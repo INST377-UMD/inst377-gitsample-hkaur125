@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <title>Simple Page</title>
+  <link rel="stylesheet" href="pageLayout.css">
+</head>
+<body>
+  <header class="bar">
+    <h1>Rock Paper Scissors Page</h1>
+  </header>
+
+  <main class="content">
+    <section class="main">
+      <h2>Main Content</h2>
+      <p>This is where the Rock Paper Scissors form will go!</p>
+    </section>
+
+    <aside class="sidebar">
+      <h2>How to Play</h2>
+      <p>Rules and tips go here.✨</p>
+     <ol>
+      <li>Rock beats Scissors</li>
+      <li>Scissors beats Paper</li>
+      <li>Paper beats Rock</li>
+      <li>Same choice = Tie</li>
+    </ol>
+    </aside>
+    <form id="rps-form" action="#" method="get">
+
+      <div class="form-row">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Your name" required />
+      </div>
+      <div class="form-row">
+        <label for="choice">Your Move</label>
+        <select id="choice" name="choice">
+          <option>Rock</option>
+          <option>Paper</option>
+          <option>Scissors</option>
+        </select>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener">Youtube</a></li>
+          <li><a href="https://www.testudo.umd.edu/" target="_blank" rel="noopener">Testudo</a></li>
+          <li><a href="https://www.tiktok.com/en/" target="_blank" rel="noopener">Tiktok</a></li>
+        </ul>
+      </nav>
+
+      <button type="submit">Play</button>
+    </form>
+  </section>
+  </main>
+
+  <footer class="bar">
+    <p>© 2025 Demo</p>
+  </footer>
+</body>
+</html>
