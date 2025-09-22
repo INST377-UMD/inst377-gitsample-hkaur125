@@ -37,7 +37,7 @@ body {
   
   .sidebar {
     width: 32%;                
-    background: #eef2ff;       /* different color from rest of page */
+    background: #eef2ff;       
     border: 1px solid #c7d2fe;
     border-radius: 12px;
     padding: 16px;             
@@ -70,13 +70,13 @@ body {
     margin: 0;
     padding: 0;
     display: flex;           /* horizontal layout */
-    justify-content: center;
+    justify-content: center ;
     gap: 20px;              
   }
   
   .nav a {
     text-decoration: none;
-    color: royalblue;            /* match header/footer */
+    color: royalblue;           
     padding: 8px 12px;
     border-radius: 6px;
   }
