@@ -12,7 +12,7 @@ body {
     padding: 25px;
     margin: 15px 0;
     border-radius: 20px; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);            
+    box-shadow: 0 4px 10px;            
   }
 
   .content {
@@ -32,7 +32,7 @@ body {
     padding: 20px;                 
     border-radius: 15px;
     margin: 0;                    
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 6px;
   }
   
   .sidebar {
@@ -42,7 +42,7 @@ body {
     border-radius: 12px;
     padding: 16px;             
     margin: 0;
-    transition: background 150ms ease-in-out; 
+    transition: background; 
   }
 
   .sidebar:hover {
@@ -55,13 +55,12 @@ body {
     padding: 8px;
     border: 2px solid #ffb6c1;
     border-radius: 8px;
-    transition: width 0.2s ease;
+    transition: width;
   }
   
   input[type="text"]:focus {
     width: 320px;   /* grows on focus */
     border-color: #ff87b3;
-    outline: none;
   }
 
 
