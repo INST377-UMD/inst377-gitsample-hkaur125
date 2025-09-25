@@ -42,7 +42,6 @@ body {
     border-radius: 12px;
     padding: 16px;             
     margin: 0;
-    transition: background; 
   }
 
   .sidebar:hover {
@@ -55,7 +54,6 @@ body {
     padding: 8px;
     border: 2px solid #ffb6c1;
     border-radius: 8px;
-    transition: width;
   }
   
   input[type="text"]:focus {
