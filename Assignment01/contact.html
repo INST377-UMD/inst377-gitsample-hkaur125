@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>Contact</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header><h1>Contact Us</h1></header>
+        <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="games.html">Games</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+
+        <main class="form">
+            <form onsubmit="return validateAndSend();">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your Name" required />
+                <br>
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" placeholder="mm/dd/yyyy" required>
+                      
+                <br>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" placeholder="Enter your Message" required></textarea>
+                <p>Allowed: letters, numbers and spaces only.</p>
+                <p>Not allowed: No special characters.</p>
+
+                <button class="btn" type="submit">Submit</button>
+            </form>
+        </main>
+        <footer><p>@ 2025 Harlene's Website</p></footer>
+        <style>
+            body{
+                font-family: 'Courier New', Courier, monospace;
+                margin: 0;
+                background-color: blanchedalmond;
+            }
+            header, footer { 
+                text-align:center; 
+                padding:12px; 
+                background:aliceblue; 
+                color:black; 
+            }
+            form{
+                max-width:360px;
+                margin:16px auto
+            }
+            nav li:hover { 
+                background:blue; 
+            }
+            nav li:hover a { 
+                color:#fff; 
+            }
+            form { 
+                display: grid; 
+                gap: 12px; 
+            }
+
+        </style>
+        
+        <script>
+            function validateAndSend(){
+                var msg=document.getElementById('message').value;
+                var enter=/^[A-Za-z0-9\s]+$/.test(msg);
+
+                if(!enter){
+                    alert('Message cannot contain any special characters. Use only letters, numbers, and spaces please.');
+                    return false;
+                }
+                window.location.href='success.html';
+                return false;
+            }
+        </script>
+    </body>
+</html>
