@@ -1,0 +1,117 @@
+<html>
+    <h1>Welcome to the Games Page</h1>
+    <body>
+    <link rel="stylesheet" href="style.css" />
+    <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    <main class="game-wrap">
+        <h2>Rock  Paper  Scrissors</h2>
+        <form onsubmit="return playGame();">
+        <div class="form-row">
+            <label for="choice">Your Choice:</label>
+            <select id="choice" required>
+                <option>Rock</option>
+                <option>Paper</option>
+                <option>Scissors</option>
+            </select>
+            <button class="btn" type="submit">Play</button>
+        </div>
+        </form>
+        <div class="choice-row">
+            <div class="box">
+              <h3>You Chose:</h3>
+              <div id="youChose">—</div>
+            </div>
+            <div class="box">
+              <h3>Computer Chose:</h3>
+              <div id="computerChose">—</div>
+            </div>
+          </div>
+        </main> 
+        <footer><p>@ 2025 Harlene's Website</p></footer>   
+        <style>
+            body{
+                background-color: blanchedalmond;
+            }
+            header, footer { 
+                text-align:center; 
+                padding:12px; 
+                background:aliceblue; 
+                color:black; 
+            }
+            header h1 {
+                margin: 12px 0;   
+            }               
+            .game-wrap { 
+                max-width: 900px; 
+                margin: 24px auto; 
+            }
+            .choice-row { 
+                display: flex; 
+            }
+            .box { 
+                flex: 1; 
+                border: 2px solid black; 
+                background: white; 
+                padding: 12px; 
+                
+            }
+            .btn { 
+                padding: 8px 12px; 
+                border: 2px solid lightslategray; 
+                background: white; 
+                color: grey;
+                border-radius: 6px; 
+                font-weight: 700; 
+                cursor: pointer; 
+            }
+            .btn:hover { 
+                background: blue; 
+                color: white; 
+            }
+          </style>
+        <script>
+            function playGame(){
+            var user = document.getElementById('choice').value;
+            if (!user) return false;
+
+            var options = ['Rock', 'Paper', 'Scissors', 'Spock']; // Spock = computer auto-win
+            var comp = options[Math.floor(Math.random() * options.length)];
+
+            document.getElementById('youChose').textContent = user;
+            document.getElementById('computerChose').textContent = comp;
+
+            var result = 'tie';
+            if (comp === 'Spock'){
+                result = 'computer';
+            } else if (user !== comp){
+            if ((user === 'Rock' && comp === 'Scissors') || (user === 'Paper' && comp === 'Rock') || (user === 'Scissors' && comp === 'Paper')){
+                result = 'user';
+            } else{
+                result = 'computer';
+            }
+            }
+
+            if (result === 'computer'){ 
+                alert('You Lose'); 
+                document.body.style.background = 'red'; 
+            }
+            else if (result === 'user'){ 
+                alert('You Win'); 
+                document.body.style.background = 'green'; 
+            }
+            else{ 
+                alert('Tie'); 
+                document.body.style.background = 'blue';
+            }
+
+            return false;
+        }
+        </script>
+    </body>
+</html>
