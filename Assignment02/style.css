@@ -1,0 +1,88 @@
+body {
+    background-color: #b6dbff;
+    margin: 0;
+    font-family: 'Courier New', monospace;
+  }
+  
+  header h1 {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  .top-nav {
+    text-align: center;
+    padding: 10px 0;
+    background: #e6f2ff;
+    border-bottom: 2px solid #c1ddff;
+  }
+  
+  .top-nav a {
+    margin: 0 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+  }
+  
+  .top-nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .main-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+  }
+  
+  .card {
+    background: #ffffff;
+    width: 350px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid black;
+  }
+  
+  .card h2 {
+    margin-top: 0;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #e6f2ff;
+    border-top: 2px solid #c1ddff;
+    margin-top: 40px;
+  }
+  
+  .button-1 {
+    background-color: #EA4C89;
+    border-radius: 8px;
+    border-style: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 16px;
+    margin: 5px;
+  }
+  
+  .button-1:hover {
+    background-color: #F082AC;
+  }
+
+  #carousel img {
+    width: 120px;
+    margin: 6px;
+    border-radius: 8px;
+  }
+  button {
+    margin: 5px;
+  }
+  

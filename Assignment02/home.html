@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>Class Activities</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Class Activities</h1>
+    </header>
+
+    <nav class="top-nav">
+      <a href="home.html">Home</a>
+      <a href="stocks.html">Stocks</a>
+      <a href="dogs.html">Dogs</a>
+    </nav>
+
+    <section class="main-container">
+      <div class="card">
+        <h2>Quote of the Day</h2>
+        <p id="quote">Loading quote...</p>
+
+        <div class="button-row">
+          <button class="button-1" onclick="window.location='stocks.html'">
+            Stocks
+          </button>
+          <button class="button-1" onclick="window.location='dogs.html'">
+            Dogs
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Voice Commands</h2>
+        <p>Say: "Hello"</p>
+        <p>Say: "Change the color to blue"</p>
+        <p>Say: "Navigate to dogs"</p>
+
+        <button class="button-1" onclick="startVoice()">Turn On Audio</button>
+        <button class="button-1" onclick="stopVoice()">Turn Off Audio</button>
+      </div>
+    </section>
+
+    <footer>©2025 Class Activities Website</footer>
+
+    <script>
+      fetch("https://zenquotes.io/api/random/quotes")
+        .then((r) => r.json())
+        .then((data) => {
+          document.getElementById("quote").innerText =
+            data[0].q + " — " + data[0].a;
+        });
+
+      function startVoice() {
+        if (annyang) {
+          const commands = {
+            hello: () => alert("Hello World"),
+            "navigate to *page": (page) => {
+              if (page.includes("home")) location = "home.html";
+              if (page.includes("stock")) location = "stocks.html";
+              if (page.includes("dog")) location = "dogs.html";
+            },
+          };
+          annyang.addCommands(commands);
+          annyang.start();
+        }
+      }
+
+      function stopVoice() {
+        if (annyang) annyang.abort();
+      }
+    </script>
+  </body>
+</html>
