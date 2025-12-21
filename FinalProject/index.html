@@ -1,40 +1,50 @@
- <head>
-  <title>Campus Event Finder</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Campus Event Finder</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="help.html" class="nav-link">Help</a>
-  </nav>
+  <body>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="help.html" class="nav-link">Help</a>
+    </nav>
 
-  <header class="header">
-    <h1>Campus Event Finder</h1>
-    <p>Search for nearby events and save the ones you like.</p>
-  </header>
+    <header class="header">
+      <h1>Campus Event Finder</h1>
+      <p>Search for nearby events and save the ones you like.</p>
+    </header>
 
-  <section class="card">
-    <h2>Search Events</h2>
-    <div class="search-row">
-      <input id="keyword" class="input" type="text" placeholder="Try: music, free, club..." />
-      <button id="searchBtn" class="button">Search</button>
-    </div>
-    <p class="small-text">This is the layout step. We’ll connect real data next.</p>
-  </section>
+    <section class="card">
+      <h2>Search Events</h2>
+      <div class="search-row">
+        <input
+          id="keyword"
+          class="input"
+          type="text"
+          placeholder="Try: music, free, club..."
+        />
+        <button id="searchBtn" class="button" type="button">Search</button>
+      </div>
+      <p class="small-text">
+        Search pulls real events from Eventbrite through the backend API.
+      </p>
+    </section>
 
-  <section class="card">
-    <h2>Events</h2>
-    <div id="events" class="grid"></div>
-  </section>
+    <section class="card">
+      <h2>Events</h2>
+      <div id="events" class="grid"></div>
+    </section>
 
-  <section class="card">
-    <h2>Saved Events</h2>
-    <div id="saved-events" class="grid"></div>
-    <p id="saved-empty" class="small-text">No saved events yet.</p>
-  </section>
+    <section class="card">
+      <h2>Saved Events</h2>
+      <div id="saved-events" class="grid"></div>
+    </section>
 
-  <script src="script.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+  </body>
 </html>

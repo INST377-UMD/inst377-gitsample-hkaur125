@@ -14,7 +14,7 @@ const supabase = createClient(
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static("."));
+/* ================= SAVED EVENTS ================= */
 
 app.get("/api/saved-events", async (req, res) => {
   const { data, error } = await supabase
@@ -23,7 +23,6 @@ app.get("/api/saved-events", async (req, res) => {
     .order("created_at", { ascending: false });
 
   if (error) return res.status(400).json({ error: error.message });
-
   res.json({ data });
 });
 
@@ -36,9 +35,74 @@ app.post("/api/saved-events", async (req, res) => {
     .select();
 
   if (error) return res.status(400).json({ error: error.message });
-
   res.json({ data });
 });
+
+app.delete("/api/saved-events/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const { error } = await supabase
+    .from("saved_events")
+    .delete()
+    .eq("gen_random", id);
+
+  if (error) return res.status(400).json({ error: error.message });
+  res.json({ success: true });
+});
+
+/* ================= EVENTBRITE ================= */
+
+app.get("/api/events", async (req, res) => {
+  try {
+    const token = process.env.EVENTBRITE_TOKEN;
+    if (!token) {
+      return res.status(500).json({ error: "Missing EVENTBRITE_TOKEN" });
+    }
+
+    const keyword = (req.query.q || "college").trim();
+
+    const url =
+      "https://api.eventbrite.com/v3/events/search/?" +
+      `q=${encodeURIComponent(keyword)}` +
+      "&location.latitude=38.9869" +
+      "&location.longitude=-76.9426" +
+      "&location.within=50mi" +
+      "&expand=venue";
+
+    const r = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
+    });
+
+    if (!r.ok) {
+      const text = await r.text();
+      return res.status(r.status).json({
+        error: "Eventbrite request failed",
+        details: text,
+      });
+    }
+
+    const data = await r.json();
+
+    const events = (data.events || []).map((e) => ({
+      title: e?.name?.text || "Untitled Event",
+      date: e?.start?.local || null,
+      venue: e?.venue?.name || "TBD",
+      url: e?.url || null,
+    }));
+
+    res.json({ events });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error calling Eventbrite" });
+  }
+});
+
+/* ================= STATIC FILES LAST ================= */
+
+app.use(express.static("."));
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
