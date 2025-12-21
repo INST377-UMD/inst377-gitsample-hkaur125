@@ -50,7 +50,6 @@ app.delete("/api/saved-events/:id", async (req, res) => {
   res.json({ success: true });
 });
 
-/* ================= EVENTBRITE ================= */
 
 app.get("/api/events", async (req, res) => {
   try {
@@ -100,7 +99,6 @@ app.get("/api/events", async (req, res) => {
   }
 });
 
-/* ================= STATIC FILES LAST ================= */
 
 app.use(express.static("."));
 
