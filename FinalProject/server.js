@@ -14,8 +14,6 @@ const supabase = createClient(
 
 const PORT = process.env.PORT || 3000;
 
-/* ================= SAVED EVENTS ================= */
-
 app.get("/api/saved-events", async (req, res) => {
   const { data, error } = await supabase
     .from("saved_events")
