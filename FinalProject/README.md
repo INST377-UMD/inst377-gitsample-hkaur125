@@ -31,10 +31,10 @@ npm install
 
 Create a `.env` file in the project root with the following values(must make your own):
 
-SUPABASE_URL=your_supabase_url
-SUPABASE_ANON_KEY=your_supabase_anon_key
-EVENTBRITE_TOKEN=your_eventbrite_api_token
-PORT=3000
+- SUPABASE_URL=your_supabase_url
+- SUPABASE_ANON_KEY=your_supabase_anon_key
+- EVENTBRITE_TOKEN=your_eventbrite_api_token
+- PORT=3000
 
 ---
 
@@ -46,7 +46,7 @@ node server.js
 If successful, the server will start on port 3000.
 
 Open a browser and navigate to:
-http://localhost:3000
+- http://localhost:3000
 
 To stop the server, press **CTRL + C** in the terminal.
 
@@ -58,9 +58,9 @@ This project does not include automated tests. All functionality is tested manua
 
 ---
 
-###Server API Endpoints
+##Server API Endpoints
 
-**GET `/api/events`** – Fetches events from the Eventbrite API.
-**GET `/api/saved-events`** – Retrieves saved events from the database.
-**POST `/api/saved-events`** – Saves an event to the database.
-**DELETE `/api/saved-events/:id`** – Deletes a saved event by ID.
+- GET `/api/events`** – Fetches events from the Eventbrite API.
+- GET `/api/saved-events`** – Retrieves saved events from the database.
+- POST `/api/saved-events`** – Saves an event to the database.
+- DELETE `/api/saved-events/:id`** – Deletes a saved event by ID.
