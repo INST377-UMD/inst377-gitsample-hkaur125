@@ -64,11 +64,3 @@ This project does not include automated tests. All functionality is tested manua
 **GET `/api/saved-events`** – Retrieves saved events from the database.
 **POST `/api/saved-events`** – Saves an event to the database.
 **DELETE `/api/saved-events/:id`** – Deletes a saved event by ID.
-
----
-
-## Known Issues and Future Development
-
-Some events may have missing venue details.
-No user authentication is implemented.
-Future improvements may include user accounts, better filtering, and automated testing.
