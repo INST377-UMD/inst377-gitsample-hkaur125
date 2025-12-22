@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Book Search</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Book Search Database</h1>
+        <form id="searchForm">
+            <label for="titleInput">Book Title:</label>
+            <input type="text" id="titleInput" required>
+            <button type="submit">Search</button>
+        </form>
+        <p id="loading">Searching for Books. Please wait...</p>
+
+        <table id="resultsTable">
+            <thread>
+                <tr>
+                    <th>Title</th>
+                    <th>Authors</th>
+                </tr>
+            </thread>
+            <tbody id="resultsBody">
+
+            </tbody>
+        </table>
+        <script>
+            var form = document.getElementById("searchForm");
+            var titleInput = document.getElementById("titleInput");
+            var loading = document.getElementById("loading");
+            var resultsTable = document.getElementById("resultsTable");
+            var resultsBody = document.getElementById("resultsBody");
+
+
+            form.addEventListener("submit", function(event){
+                event.preventDefault();
+                var title=titleInput.value.trim();
+                if(title===""){
+                    alert("Please enter a book title.");
+                    return;
+                }
+                searchBooks(title);
+            });
+
+            function searchBooks(title){
+             var url = "https://openlibrary.org/search.json?title=" + title;
+               loading.style.display="block";
+               resultsBody.innerHTML="";
+               
+               fetch(url)
+               .then(function(response){
+                return response.json();
+               })
+               .then(function(data){
+                var books=data.docs;
+                for(var i=0; i<books.length && i<10; i++){
+                    var book=books[i];
+                    var row=document.createElement("tr");
+                    var titleCell = document.createElement("td");
+                    titleCell.textContent = book.title;
+                    row.appendChild(titleCell);
+
+                    var authorsCell = document.createElement("td");
+                    authorsCell.textContent = book.author_name;
+                    row.appendChild(authorsCell);
+
+                    resultsBody.appendChild(row);
+                }
+                resultsTable.style.display="table";
+                loading.style.display="none";
+               });
+            }
+        </script>
+    </body>
+</html>

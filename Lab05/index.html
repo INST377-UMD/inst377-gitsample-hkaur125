@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Simple Currency Converter</title>
+    </head>
+    <body>
+        <style>
+            body{
+                text-align:center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+        </style>
+        <h2>Let's convert some currency!</h2>
+        <form id="form">
+            <p>From: <select id="from"></select></p>
+            <p>To: <select id="to"></select></p>
+            <p>Amount: <input id="amount" type="number" step="0.01" required></p>
+            <button type="submit">Convert</button>
+        </form>
+        <h3 id="result"></h3>
+        <script>
+            const API = "https://api.frankfurter.app";
+            fetch(API + "/currencies")
+            .then(res=>res.json())
+            .then(data=>{
+                for(let code in data){
+                    let name = data[code];
+                    let option1=new Option(name+" ("+code+")",code);
+                    let option2=new Option(name+" ("+code+")",code);
+                    document.getElementById("from").appendChild(option1);
+                    document.getElementById("to").appendChild(option2);
+                }
+            });
+            document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let from = document.getElementById("from").value;
+      let to = document.getElementById("to").value;
+      let amount = document.getElementById("amount").value;
+
+      if (from === to) {
+        alert("You cannot convert the same currency!");
+        return;
+      }
+
+      fetch(`${API}/latest?amount=${amount}&from=${from}&to=${to}`)
+        .then(res => res.json())
+        .then(data => {
+          let rate = data.rates[to];
+          document.getElementById("result").textContent = `${amount} ${from} = ${rate} ${to}`;
+        });
+    });
+        </script>
+    </body>
+</html>

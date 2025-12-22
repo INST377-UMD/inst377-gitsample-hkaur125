@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <style>
+            body{
+                font-family: 'Courier New', Courier, monospace;
+                background-color: blanchedalmond;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="wrap">
+            <h1>Success!</h1>
+            <h2>This page will redirect to the Home Page in 5 seconds.</h2>
+            <a href="index.html" style="font-size:48px" aria-label="Go to Home Page">🏠</a>
+        </main>
+        <script>
+         setTimeout(function () {
+            window.location.href = 'index.html';
+        }, 5000);   
+        </script>
+    </body>
+</html>

@@ -1,0 +1,124 @@
+<html>
+    <head>
+        <title>Leaflet Quick Start – Simple</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+        <style>
+            body { 
+                font-family:Georgia, 'Times New Roman', Times, serif;
+                margin: 16px; 
+                background-color: antiquewhite;
+            }
+            #map { 
+                height: 400px; 
+                border: 1px solid whitesmoke; 
+            }
+            button { 
+                margin: 12px 0; 
+            }
+            .note { 
+                color: gray; 
+                font-size: 16px; 
+            }
+            </style>
+    </head>
+    <body>
+            <h1>Leaflet Map – 3 Random Markers</h1>
+            <p class="note">
+            This map will show a Leaflet map with 3 random markers between 
+            latitude 30–35 and longitude -100– -90.
+            </p>
+
+            <button id="make">Make 3 New Markers</button>
+            <div id="map"></div>
+        
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin="">
+        </script>
+
+        <script>
+        function getRandomInRange(from, to, fixed) {
+            return (Math.random() * (to - from) + from).toFixed(fixed) * 1; // make it a Number
+       }
+    
+        const LAT_MIN = 30, LAT_MAX = 35;
+        const LON_MIN = -100, LON_MAX = -90;
+    
+        const map = L.map('map').setView([39.5, -98.35], 4);
+    
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '@ OpenStreetMap'
+        }).addTo(map);
+    
+        let markers = []; 
+        function clearMarkers() {
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+        }
+    
+        function ensureInfoBox() {
+        let info = document.getElementById('info');
+            if (!info) {
+                info = document.createElement('div');
+                info.id = 'info';
+                info.style.marginTop = '12px';
+                const mapEl = document.getElementById('map');
+                mapEl.parentNode.insertBefore(info, mapEl.nextSibling);
+            }
+            info.innerHTML = '';
+            return info;
+        }
+
+        function addThreeRandomMakers(){
+        clearMarkers();
+        const info = ensureInfoBox();
+        const points = [];
+
+        for(let i = 0; i < 3; i++){
+            const lat = getRandomInRange(LAT_MIN, LAT_MAX, 3);
+            const lon = getRandomInRange(LON_MIN, LON_MAX, 3);
+            points.push([lat, lon]);
+        }
+
+        points.forEach((pt, index) =>{
+            const[lat, lon] = pt;
+            const marker = L.marker(pt).addTo(map);
+            marker.bindPopup(`Marker ${index + 1}: ${lat.toFixed(3)}, ${lon.toFixed(3)} – loading...`);
+            markers.push(marker);
+            const url = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en';
+            fetch(url)
+            .then(r => r.json())
+            .then(d => {
+                const locality =
+                    d.locality || d.city || d.principalSubdivision || d.countryName || 'Unknown';
+            marker.setPopupContent(
+                `Marker ${index + 1}<br>${lat.toFixed(3)}, ${lon.toFixed(3)}<br><strong>${locality}</strong>`
+            );
+            
+            const p = document.createElement('p');
+            p.textContent = `Marker ${index + 1}: ${lat.toFixed(3)}, ${lon.toFixed(3)} — ${locality}`;
+            info.appendChild(p);
+            })
+            
+            .catch(() => {
+                marker.setPopupContent(
+                `Marker ${index + 1}<br>${lat.toFixed(3)}, ${lon.toFixed(3)}<br><em>Locality unavailable</em>`
+                );
+            const p = document.createElement('p');
+            p.textContent = `Marker ${index + 1}: ${lat.toFixed(3)}, ${lon.toFixed(3)} — Locality unavailable`;
+            info.appendChild(p);
+            });
+        });
+
+        const bounds = L.latLngBounds(points);
+        map.fitBounds(bounds.pad(0.2));
+    }
+
+    addThreeRandomMakers();
+    document.getElementById('make').addEventListener('click', addThreeRandomMakers);
+    </script>
+</body>
+</html>

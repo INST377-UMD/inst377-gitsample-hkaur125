@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Time for Vacation</title>
+    </head>
+    <body>
+        <h1>Book Your Vacation Today!</h1>
+        <style>
+            body{
+                background-color:bisque;
+            }
+            h1{
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+            label {
+                font-size: 18px;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .field {
+                margin: 20px 0; 
+            }
+            .field input[type="text"] {
+                padding: 6px;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                width: 250px;
+            }
+            input[type="submit"] {
+                background-color: green;  
+                color: white;
+                margin: 10px 0;          
+                padding: 6px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            input[type="submit"]:hover {
+                background-color: red;
+            }
+        </style>
+        <!--User Details-->
+        <form name ="contactForm" method="get" action="formSent.html">
+            <label for="firstName">First Name:</label>
+            <input type ="text" id="firstName" required>
+            <br>
+
+            <label for="lastName">Last Name:</label>
+            <input type ="text" id="lastName">
+            <br>
+            
+            <br>
+            <label for="vacaSpots">Pick from one of our best destinations:</label>
+            <select name="vacation" id="states" required>
+            <option value="" disabled selected hidden>Select One</option>
+            <option value="flordia">Flordia</option>
+            <option value="hawaii">Hawaii</option>
+            <option value="california">California</option>
+            <option value="south carolina">South Carolina</option>
+            <option value="north carolina">North Carolina</option>
+            </select>
+            <br>
+            
+            <label for="email">Email:</label>
+            <input type ="text" id="email" placeholder="example@gmail.com"required>
+            <br>
+
+            <label for="number">Phone Number:</label>
+            <input type ="text" id="number" placeholder="123-456-7890"required>
+
+            <input type="submit">
+        </form>
+    </body>
+</html>

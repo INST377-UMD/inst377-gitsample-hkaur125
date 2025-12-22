@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    background: mistyrose;
+    color: dimgray;
+  }
+  
+  /* NAV */
+  .nav {
+    display: flex;
+    gap: 16px;
+    padding: 16px 20px;
+    background: white;
+    border-bottom: 2px solid pink;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: dimgray;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  
+  .nav-link:hover {
+    background: lightpink;
+  }
+  
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 30px 20px 10px;
+  }
+  
+  .header h1 {
+    margin-bottom: 6px;
+    color: deeppink;
+  }
+  
+  .header p {
+    color: gray;
+  }
+  
+  /* CARD CONTAINER */
+  .card {
+    max-width: 950px;
+    margin: 18px auto;
+    background: white;
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* SEARCH */
+  .search-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  
+  .input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 20px;
+    border: 1px solid pink;
+    outline: none;
+  }
+  
+  .input:focus {
+    border-color: deeppink;
+  }
+  
+  /* BUTTONS */
+  .button {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: none;
+    background: hotpink;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: auto;
+    max-width: fit-content;
+  }
+  
+  .button:hover {
+    background: deeppink;
+  }
+  
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  
+  /* EVENT CARD */
+  .event {
+    background: lavenderblush;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .event h3 {
+    margin: 0;
+    color: deeppink;
+  }
+  
+  .event p {
+    margin: 2px 0;
+  }
+  
+  .event a {
+    color: deeppink;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .event a:hover {
+    text-decoration: underline;
+  }
+  
+  /* BUTTON ROW INSIDE EVENT */
+  .event .button {
+    margin-top: 10px;
+    align-self: flex-start;
+  }
+  
+  /* SMALL TEXT */
+  .small-text {
+    color: gray;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  

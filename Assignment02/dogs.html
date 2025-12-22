@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <title>Dogs</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Dog Browser</h1>
+    </header>
+
+    <nav class="top-nav">
+      <a href="home.html">Home</a>
+      <a href="stocks.html">Stocks</a>
+      <a href="dogs.html">Dogs</a>
+    </nav>
+
+    <section class="main-container">
+      <div class="card">
+        <h2>Random Dogs</h2>
+
+        <div id="carousel" style="text-align: center"></div>
+
+        <button class="button-1" onclick="loadDogs()">Load More</button>
+      </div>
+
+      <div class="card">
+        <h2>Dog Breeds</h2>
+
+        <div id="breed-buttons" style="margin-bottom: 15px"></div>
+        <button class="button-1" onclick="nextBreeds()">Next 10</button>
+
+        <h3>Breed Info</h3>
+        <p id="breed-info">Click a breed to see details</p>
+
+        <button class="button-1" onclick="startVoice()">Turn On Voice</button>
+        <button class="button-1" onclick="stopVoice()">Turn Off Voice</button>
+      </div>
+    </section>
+
+    <footer>©2025 Class Activities Website</footer>
+
+    <script>
+      function loadDogs() {
+        fetch("https://dog.ceo/api/breeds/image/random/10")
+          .then((r) => r.json())
+          .then((data) => {
+            let box = document.getElementById("carousel");
+            box.innerHTML = "";
+            data.message.forEach((url) => {
+              let img = document.createElement("img");
+              img.src = url;
+              box.appendChild(img);
+            });
+          });
+      }
+
+      loadDogs();
+
+      let allBreeds = [];
+      let breedStart = 0;
+
+      fetch("https://dogapi.dog/api/v2/breeds")
+        .then((r) => r.json())
+        .then((data) => {
+          allBreeds = data.data;
+          showBreeds();
+        });
+
+      function showBreeds() {
+        const box = document.getElementById("breed-buttons");
+        box.innerHTML = "";
+
+        const slice = allBreeds.slice(breedStart, breedStart + 10);
+
+        slice.forEach((b) => {
+          let btn = document.createElement("button");
+          btn.className = "button-1";
+          btn.innerText = b.attributes.name;
+          btn.onclick = () => loadBreed(b.id);
+          box.appendChild(btn);
+        });
+      }
+
+      function nextBreeds() {
+        breedStart += 10;
+        if (breedStart >= allBreeds.length) breedStart = 0;
+        showBreeds();
+      }
+
+      function loadBreed(id) {
+        fetch("https://dogapi.dog/api/v2/breeds/" + id)
+          .then((r) => r.json())
+          .then((info) => {
+            let b = info.data.attributes;
+
+            document.getElementById("breed-info").innerText =
+              b.name +
+              ": " +
+              b.description +
+              " (Life: " +
+              b.life.min +
+              "–" +
+              b.life.max +
+              " years)";
+          });
+      }
+
+      function startVoice() {
+        if (annyang) {
+          let commands = {
+            "load dog breed *breed": (name) => {
+              let match = allBreeds.find(
+                (b) => b.attributes.name.toLowerCase() === name.toLowerCase()
+              );
+              if (match) loadBreed(match.id);
+            },
+          };
+          annyang.addCommands(commands);
+          annyang.start();
+        }
+      }
+
+      function stopVoice() {
+        if (annyang) annyang.abort();
+      }
+    </script>
+  </body>
+</html>
